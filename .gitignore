@@ -23,3 +23,5 @@ go-base
 *.out
 
 main
+
+storage

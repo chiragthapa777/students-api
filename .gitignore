@@ -25,4 +25,4 @@ go-base
 main
 
 storage
-config
+/config

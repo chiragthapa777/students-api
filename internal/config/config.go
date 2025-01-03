@@ -18,7 +18,7 @@ type Config struct {
 	HTTPServer  `yaml:"http_server"`
 }
 
-// if has Most prefix in the function then the general practice is not to return error, is error the stop the program
+// if function has Most prefix then the general practice is not to return error, is error the stop the program
 func MustLoad() *Config {
 	var configPath string = os.Getenv("CONFIG_PATH")
 

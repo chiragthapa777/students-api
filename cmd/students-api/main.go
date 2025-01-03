@@ -12,6 +12,7 @@ import (
 
 	"github.com/chiragthapa777/students-api/internal/config"
 	student "github.com/chiragthapa777/students-api/internal/http/handlers"
+	"github.com/chiragthapa777/students-api/internal/storage/sqlite"
 )
 
 func main() {
@@ -20,6 +21,13 @@ func main() {
 	cfg := config.MustLoad()
 
 	// database setup
+
+	_, err := sqlite.New(cfg)
+	if err != nil {
+		log.Fatal("Error while initializing db", err)
+	}
+
+	slog.Info("storage initialized")
 
 	// setup router
 
@@ -58,10 +66,12 @@ func main() {
 
 	defer cancel()
 
-	err := server.Shutdown(ctx)
+	err = server.Shutdown(ctx)
 
 	if err != nil {
 		slog.Error("failed to shutdown server gracefully", slog.String("error : %s", err.Error()))
 	}
 
 }
+
+// error with db package gcc required
